@@ -1,4 +1,6 @@
-hargaBarang = input("masukkan harga barang :")
-diskon = (hargaBarang*20)
-hargaDiskon = int(diskon)/100
-print(hargaDiskon)
+hargaAwal = float(input ("masukkan harga barang :"))
+persenDiskon = 20
+jumlahDiskon = (hargaAwal)*(persenDiskon/100)
+hargaSetelahDiskon = (hargaAwal) - (jumlahDiskon)
+
+print("harga setelah diskon adalah ;", hargaSetelahDiskon)
