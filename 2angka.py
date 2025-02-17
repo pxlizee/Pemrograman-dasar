@@ -1,0 +1,11 @@
+angka1 = input("masukkan angka ke 1 :")
+angka2 = input("masukkan angka ke 2 :")
+hasilKali = int(angka1)*int(angka2)
+hasilBagi = int(angka1)/int(angka2)
+hasilTambah = int(angka1)+int(angka2)
+hasilKurang = int(angka1)-int(angka2)
+
+print("hasil kali =",hasilKali)
+print("hasil bagi =",hasilBagi)
+print("hasil tambah =",hasilTambah)
+print("hasil kurang =",hasilKurang)  
