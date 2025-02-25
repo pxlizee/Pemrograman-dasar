@@ -1,44 +1,33 @@
-nilai1_ipa = int(input ("Nilai ipa : "))
-nilai1_ips = int(input ("Nilai ips : "))
-nilai1_mtk = int(input ("Nilai mtk : "))
-nilai1_eng = int(input ("Nilai inggris : "))
-nilai1_ind = int(input ("Nilai indonesia : "))
+ipa = int(input("Masukkan nilai IPA :"))
+ips = int(input("Masukkan nilai IPS :"))
+mtk = int(input("Masukkan nilai MTK :"))
+english = int(input("Masukkan nilai English :"))
+indonesia = int(input("Masukkan nilai Indonesia :"))
 
-list_nilai = (nilai1_mtk, nilai1_eng, nilai1_ind, nilai1_ipa, nilai1_ips)
+rata_rata_1 = (ipa + ips + mtk + english + indonesia) / 5
 
-jumlah_nilai = nilai1_ipa + nilai1_ips + nilai1_mtk + nilai1_eng + nilai1_ind
-rata_rata = jumlah_nilai / 5
+nilai = (ipa, ips, mtk, english, indonesia)
 
-list_nilai_under50 = 0
-if nilai1_eng <= 50 :
-    list_nilai_under50 += 1
-if nilai1_ind <= 50 :
-    list_nilai_under50 += 1
-if nilai1_ipa <= 50 :
-    list_nilai_under50 += 1
-if nilai1_ips <= 50 :
-    list_nilai_under50 += 1
-if nilai1_mtk <= 50 :
-    list_nilai_under50 += 1
-    
-list_nilai_sempurna = 0
-if nilai1_eng == 100 :
-    list_nilai_sempurna += 1
-if nilai1_ind == 100 :
-    list_nilai_sempurna =+ 1
-if nilai1_ipa == 100 :
-    list_nilai_sempurna =+ 1
-if nilai1_ips == 100 :
-    list_nilai_sempurna =+ 1
-if nilai1_mtk == 100 :
-    list_nilai_sempurna =+ 1
-    
-    
-Kelulusan = 
-    
+print(f"Rata-rata nilai seorang siswa dari 5 mata pelajaran adalah {rata_rata_1}")
+
+nilai_di_bawah_50 = 2 
+if(ipa < 50):
+    nilai_di_bawah_50 += 1
+if(ips < 50):
+    nilai_di_bawah_50 += 1
+if(mtk < 50):
+    nilai_di_bawah_50 += 1
+if(english < 50):
+    nilai_di_bawah_50 += 1
+if(indonesia < 50):
+    nilai_di_bawah_50 += 1
 
 
-
-
-    
-    
+if (rata_rata_1 > 75):
+    print("Lulus, karena rata - rata nilai lebih dari 75")
+elif (nilai.count(100) >= 1):
+    print("Lulus, karena mendapatkan nilai sempurna dari salah satu mata pelajaran")
+elif (nilai_di_bawah_50 == 2 ):
+    print("lulus, karena hanya 2 mata pelajaran yang nilai nya di bawah 50")
+else:
+    print("Tidak lulus, karena tidak memenuhi syarat")
