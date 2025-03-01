@@ -1,14 +1,31 @@
-input1_string = str(input("Masukkan Input ke 1 (string):"))
-input2_integer = int(input("Masukkan Input ke 2 (integer):"))
-input3_float = float(input("Masukkan Input ke 3 (float):"))
+def cek_tipe_input():
+    input1 = input("Masukkan input (string) : ")
+    input2 = input("Masukkan input (integer) : ")
+    input3 = input("Masukkan input (float) : ")
 
-print(input1_string, input2_integer, input3_float)
 
-if type(input1_string) == str:
-    print("Tipe Input valid")
-elif type(input2_integer) == int:
-    print("Tipe Input valid")
-elif type(input3_float) == float:
-    print("Tipe Input valid")
-else :
-    print("Tipe Input tidak valid")
+    is_string = isinstance(input1, str)
+    is_integer = False
+    is_float = False
+
+    try:
+        int_input2 = int(input2)
+        is_integer = True
+    except ValueError:
+        is_integer = False
+
+
+    try:
+        float_input3 = float(input3)
+        is_float = True
+    except ValueError:
+        is_float = False
+
+    if is_string and is_integer and is_float:
+        return "Tipe input valid"
+    else:
+        return "Tipe input tidak valid"
+
+
+hasil = cek_tipe_input()
+print(hasil)
