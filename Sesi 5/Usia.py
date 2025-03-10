@@ -1,4 +1,4 @@
-umur = int(input('Masukkan Umur Anda :'))
+umur = int(input('Masukkan Umur (Dalam Tahun) :'))
 
 if int(umur) <= 2:
     print('Anda Bayi')
