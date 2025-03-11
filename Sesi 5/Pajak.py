@@ -1,5 +1,5 @@
-njkb = int(input("Masukkan Harga Beli : "))
 jenis = str(input("Jenis Kendaraan (Mobil/Motor) :"))
+njkb = int(input("Masukkan Harga Beli : "))
 kepemilikan = int(input("Masukkan Kepemilikan : "))
 swdkllj_jenis = jenis
 swdkllj = 0
@@ -9,8 +9,10 @@ if kepemilikan == 1:
     pkb += 1
 elif kepemilikan == 2:
     pkb += 2
-elif kepemilikan < 3:
+elif kepemilikan == 3:
     pkb += 3
+elif kepemilikan == 4:
+    pkb += 4
 
 pajak = 0    
 if pkb == 1:
@@ -19,9 +21,9 @@ elif pkb == 2:
     pajak = njkb*2.5 / 100
 elif pkb == 3:
     pajak = njkb*3 / 100
-elif pkb == 3:
-    pajak = njkb*3.5 / 100
 elif pkb == 4:
+    pajak = njkb*3.5 / 100
+elif pkb == 5:
     pajak = njkb*4 / 100
 
 if swdkllj_jenis == str("Mobil") :
