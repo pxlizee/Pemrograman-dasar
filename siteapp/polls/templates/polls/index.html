@@ -13,4 +13,11 @@
     {% else %}
         <p>Tidak ada polling yang tersedia.</p>
     {% endif %}
+
+    <hr style="margin: 30px 0;">
+
+    <div style="text-align: center;">
+        <a href="{% url 'polls:all_results' %}" class="btn">Lihat Hasil Semua Polling</a>
+    </div>
+
 {% endblock %}

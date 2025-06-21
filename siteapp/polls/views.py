@@ -15,28 +15,19 @@ def detail(request, question_id):
 
 def results(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
-    
-    # Ambil semua pilihan yang terkait dengan pertanyaan
     choices = question.choice_set.all()
-    
-    # 1. Hitung total semua suara
     total_votes = sum(choice.votes for choice in choices)
     
-    # 2. Tambahkan atribut 'percentage' ke setiap objek pilihan
     for choice in choices:
         if total_votes > 0:
-            # Hitung persentase
             choice.percentage = (choice.votes / total_votes) * 100
         else:
-            # Hindari pembagian dengan nol jika belum ada vote
             choice.percentage = 0
             
-    # 3. Kirim 'question' dan 'total_votes' ke template
     context = {
         'question': question,
         'total_votes': total_votes
     }
-    
     return render(request, 'polls/results.html', context)
 
 def vote(request, question_id):
@@ -44,7 +35,6 @@ def vote(request, question_id):
     try:
         selected_choice = question.choice_set.get(pk=request.POST['choice'])
     except (KeyError, Choice.DoesNotExist):
-        # Jika tidak ada pilihan, tampilkan kembali halaman detail dengan pesan error
         return render(request, 'polls/detail.html', {
             'question': question,
             'error_message': "Anda belum memilih salah satu pilihan.",
@@ -52,11 +42,29 @@ def vote(request, question_id):
     else:
         selected_choice.votes += 1
         selected_choice.save()
-        # Selalu redirect setelah POST berhasil untuk mencegah data di-post dua kali
         return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
-def address(request):
-    # Pastikan juga file address.html ada di polls/templates/polls/
-    return render(request, 'polls/address.html')
-def phone(request):
-    # Pastikan juga file phone.html ada di polls/templates/polls/
-    return render(request, 'polls/phone.html')
+def all_results(request):
+    # 1. Ambil semua pertanyaan, urutkan dari yang terbaru
+    questions = Question.objects.order_by('-pub_date')
+    
+    # 2. Lakukan kalkulasi untuk setiap pertanyaan
+    for question in questions:
+        # Ambil semua pilihan untuk pertanyaan saat ini
+        choices = question.choice_set.all()
+        # Hitung total suara untuk pertanyaan ini
+        total_votes = sum(choice.votes for choice in choices)
+        # Tempelkan total suara ke objek question agar bisa diakses di template
+        question.total_votes = total_votes
+        
+        # Lakukan hal yang sama untuk persentase setiap pilihan
+        for choice in choices:
+            if total_votes > 0:
+                choice.percentage = (choice.votes / total_votes) * 100
+            else:
+                choice.percentage = 0
+                
+    # 3. Kirim daftar pertanyaan yang sudah diolah ke template
+    context = {
+        'questions_with_results': questions,
+    }
+    return render(request, 'polls/all_results.html', context)

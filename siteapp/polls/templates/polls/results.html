@@ -1,27 +1,20 @@
 {% extends "polls/base.html" %}
-
 {% block title %}Hasil Vote{% endblock %}
-
 {% block content %}
     <h1>{{ question.question_text }}</h1>
-
+    <p><strong>Total Suara: {{ total_votes }}</strong></p>
     <ul class="results-list">
     {% for choice in question.choice_set.all %}
-        {% with total_votes=question.choice_set.all.count %}
-            {% with vote_percentage=choice.votes|floordiv:total_votes|mul:100 %}
-            <li>
-                {{ choice.choice_text }} &mdash; {{ choice.votes }} suara
-                <div class="result-bar-container">
-                    <div class="result-bar" style="width: {% if choice.votes > 0 %}{{ choice.votes|div:question.choice_set.all.count|mul:100 }}{% else %}0{% endif %}%;">
-                        {{ choice.votes }}
-                    </div>
+        <li>
+            {{ choice.choice_text }} &mdash; <strong>{{ choice.votes }} suara</strong> ({{ choice.percentage|floatformat:2 }}%)
+            <div class="result-bar-container">
+                <div class="result-bar" style="width: {{ choice.percentage }}%;">
+                    &nbsp;
                 </div>
-            </li>
-            {% endwith %}
-        {% endwith %}
+            </div>
+        </li>
     {% endfor %}
     </ul>
-
     <a href="{% url 'polls:detail' question.id %}" class="back-link">Vote lagi?</a>
     <br>
     <a href="{% url 'polls:index' %}" class="back-link">Kembali ke daftar polling</a>

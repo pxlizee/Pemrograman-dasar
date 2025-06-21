@@ -1,0 +1,35 @@
+{% extends "polls/base.html" %}
+
+{% block title %}Semua Hasil Polling{% endblock %}
+
+{% block content %}
+    <h1>Rekapitulasi Semua Hasil Polling</h1>
+
+    {% if questions_with_results %}
+        {% for question in questions_with_results %}
+            <div class="poll-result-block" style="margin-bottom: 40px; border-top: 2px solid #eee; padding-top: 20px;">
+                <h2 style="font-size: 1.5em; color: #34495e;">{{ question.question_text }}</h2>
+                <p><strong>Total Suara: {{ question.total_votes }}</strong></p>
+
+                <ul class="results-list">
+                {% for choice in question.choice_set.all %}
+                    <li>
+                        {{ choice.choice_text }} &mdash; <strong>{{ choice.votes }} suara</strong> ({{ choice.percentage|floatformat:2 }}%)
+                        <div class="result-bar-container">
+                            <div class="result-bar" style="width: {{ choice.percentage }}%;">
+                                &nbsp;
+                            </div>
+                        </div>
+                    </li>
+                {% empty %}
+                    <li>Belum ada pilihan untuk polling ini.</li>
+                {% endfor %}
+                </ul>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>Belum ada polling sama sekali.</p>
+    {% endif %}
+
+    <a href="{% url 'polls:index' %}" class="back-link">Kembali ke halaman utama</a>
+{% endblock %}
