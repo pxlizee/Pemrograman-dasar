@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hasil Polling</title>
+</head>
+<body>
+
+<h1>{{ question.question }}</h1>
+
+<ul>
+{% for choice in question.choice_set.all %}
+    <li>{{ choice.choice_text }} -- {{ choice.votes }} suara</li>
+{% endfor %}
+</ul>
+
+<a href="{% url 'polls:index' %}">Kembali ke daftar polling</a>
+
+</body>
+</html>
