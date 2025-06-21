@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-      # Pastikan aplikasi 'polls' sudah terdaftar
 ]
 
 MIDDLEWARE = [
