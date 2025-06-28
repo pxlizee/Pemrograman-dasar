@@ -1,0 +1,17 @@
+.env
+db.sqlite3
+
+# Folder Virtual Environment
+venv/
+
+# Folder cache Python
+__pycache__/
+*.pyc
+
+# Folder file statis yang dikumpulkan Django
+staticfiles/
+
+# Folder media (jika ada)
+media/
+
+!vercel.json
